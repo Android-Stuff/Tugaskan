@@ -1,16 +1,21 @@
-function addTask() {
-    let input = document.getElementById("taskInput");
-    let text = input.value.trim();
+const inputTugas = document.getElementById("input-tugas");
+const btnTambah = document.getElementById("btn-tambah");
+const daftarTugas = document.getElementById("daftar-tugas");
 
-    if (!text) return alert("Input tidak boleh kosong!");
+btnTambah.addEventListener("click", function() {
+    let teksTugas = inputTugas.value;
 
-    let li = document.createElement("li");
-    li.innerHTML = `
-        <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('completed')">
-        <span>${text}</span>
-        <button onclick="this.parentElement.remove()">hapus</button>
-    `;
+    if (teksTugas === "") {
+        alert("Jadwal tidak boleh kosong!");
+    } else {
+        daftarTugas.innerHTML += `
+            <li>
+                <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('completed')">
+                <span>${teksTugas}</span>
+                <button class="btn-hapus" onclick="this.parentElement.remove()">Hapus</button>
+            </li>
+        `;
 
-    document.getElementById("taskList").appendChild(li);
-    input.value = "";
-}
+        inputTugas.value = "";
+    }
+});
